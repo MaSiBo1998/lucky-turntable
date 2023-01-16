@@ -15,7 +15,7 @@
 </template>
 
 <script>
-	import LuckyTurntable from '../../components/LuckyTurntable/index.vue'
+	import LuckyTurntable from '../../components/lucky-turntable/lucky-turntable.vue'
 	export default {
 		components: {
 			LuckyTurntable
