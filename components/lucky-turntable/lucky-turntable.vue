@@ -4,14 +4,14 @@
 	<view class="content">
 		<view class="turntable-box">
 			<view class="content-box">
-				<view class="panzi"
+				<view class="zhuanpan"
 					:style="{transition:'transform ' + rotationTime / 1000 + 's ease',transform:'rotate(' + rotate + 'deg)'}">
 					<view class="bck-box" :style="` transform: rotate(${-90+180/prizeList.length}deg)`">
 						<view class="bck" v-for="(i,index) in prizeList" :key="index"
 							:style="`transform: rotate(${-index*360/prizeList.length}deg) skew(${-90 + 360/prizeList.length}deg);`">
 						</view>
 					</view>
-					<view class="jiang"
+					<view class="prize"
 						:style="`transform: rotate(${-index*360/prizeList.length}deg) translateY(-7.5rem);`"
 						v-for="(i,index) in prizeList" :key="index">
 						<span class="title">{{i.title}}</span>
@@ -97,19 +97,19 @@
 				} else {
 
 					this.isHand = false
-					this.startBtn(this.prizeIndex);
+					this.startToRotate(this.prizeIndex);
 				}
 			},
-			// 开始转动,通过奖项级别进行匹配:id
-			startBtn(val) {
+			// 开始转动
+			startToRotate(val) {
 				const self = this;
 				// 拿到相应的角度调旋转接口
-				self.startrotate(val, () => {
+				self.getPrize(val, () => {
 					self.completePrize();
 				});
 			},
 			//旋转到第几个奖品 index  complete回调成功函数
-			startrotate(index, complete) {
+			getPrize(index, complete) {
 
 				// 相应的角度 + 满圈 只是在原角度多转了几圈 360 * 6
 				// angele  每个商品的扇形角度
@@ -223,8 +223,8 @@
 					}
 				}
 
-				/* 盘子样式 */
-				.panzi {
+				/* 转盘样式 */
+				.zhuanpan {
 					overflow: hidden;
 					border-radius: 50%;
 					position: absolute;
@@ -238,7 +238,7 @@
 					box-sizing: border-box;
 
 					/* 每个奖项的样式 */
-					.jiang {
+					.prize {
 						position: absolute;
 
 						.title {
