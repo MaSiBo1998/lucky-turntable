@@ -70,6 +70,7 @@
 			},
 		},
 		onLoad() {
+			this.lastTimes = this.times
 			let srceenNunber = 375;
 			let that = this;
 			//窗体改变大小触发事件
@@ -86,7 +87,8 @@
 		methods: {
 			// 点击开始转动
 			onStart() {
-				if(this.times <= 0){
+
+				if (this.times <= 0) {
 					alert('没有抽奖次数了,请下次再来')
 					return false
 				}
@@ -129,15 +131,15 @@
 					this.timer = null;
 					// 结束后可以再次点击
 					this.isManyClick = false
-					
+
 					this.rotNum++;
 				}, this.rotationTime);
 			},
 			//得奖后的处理
 			completePrize() {
 				this.isHand = true
-			
-				alert('恭喜您获得'+ this.prizeList[this.prizeIndex - 1].title)
+				this.$emit('timesChange');
+				alert('恭喜您获得' + this.prizeList[this.prizeIndex - 1].title)
 			},
 		}
 	}

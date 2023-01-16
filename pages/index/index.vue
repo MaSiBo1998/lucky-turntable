@@ -7,8 +7,9 @@
 		 prizeList: 奖品列表(title:奖品名称,img:奖品样式图片)
 		 rotationTime: 旋转时间(毫秒)
 		 prizeIndex: 获得第几个奖品(注意不是数组下标)
+		 times: 多少次抽奖机会
 		 -->
-		<LuckyTurntable :prizeList = "prizeList" :rotationTime = "rotationTime" :prizeIndex="prizeIndex" :times="times"></LuckyTurntable>
+		<LuckyTurntable :prizeList = "prizeList" :rotationTime = "rotationTime" :prizeIndex="prizeIndex" :times.sync="times" @timesChange= "timesChange"></LuckyTurntable>
 	</view>
 
 </template>
@@ -68,6 +69,11 @@
 					that.rootFontSize = parseFloat(res.screenWidth / srceenNunber) * 14;
 				}
 			})
+		},
+		methods: {
+			timesChange() {
+				this.times--
+			}
 		},
 	}
 </script>
